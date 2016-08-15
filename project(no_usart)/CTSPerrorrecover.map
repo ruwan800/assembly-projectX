@@ -1,0 +1,160 @@
+MPLINK 4.37, Linker
+Linker Map File - Created Sun May 01 09:25:03 2011
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x000556
+.config_2007_CTSPERRORRECOVER.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x0002ae      
+                            0x002007    0x002007      
+            685 out of 8453 program addresses used, program memory utilization is 8%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     DECC   0x000228    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY1   0x00029c    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY2   0x00029a    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY3   0x000293    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY4   0x00028c    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     DVLP   0x0001af    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    DVLP1   0x000198    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    DVLP2   0x0001a8    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    HPCF0   0x000181    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    HPCF2   0x000185    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     LCDF   0x00016b    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+              LINEMSGTEMP   0x000005    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    LPCF0   0x00023f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    LPCF1   0x00023d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    LPCF2   0x000241    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  NEWLINE   0x000258    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     SNMF   0x000249    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXCF1   0x000147    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXCF2   0x00013c    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF0   0x00014f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF1   0x00015d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF2   0x000159    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF3   0x000167    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    WCMF0   0x000101    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    WCMF1   0x000105    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    WCMF2   0x00010d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT0   0x00011b    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT2   0x000122    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT3   0x000128    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT4   0x000117    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   adinit   0x0000db    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      cmd   0x00027e    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 decimals   0x0001de    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               delay100ms   0x000291    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  delay2s   0x00028a    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 delay5ms   0x000298    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   divide   0x00018e    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  getmean   0x0001b2    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      hpc   0x000171    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      inf   0x0002a3    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                interrupt   0x0000ad    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  lcdinit   0x0000e3    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               lcdroutine   0x000170    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      lpc   0x000233    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   madinf   0x0002a6    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     main   0x0000c6    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg0   0x000006    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg1   0x000017    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg2   0x000036    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg3   0x000052    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg5   0x00006f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg6   0x000090    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 sendchar   0x000273    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  sendmsg   0x000244    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               sendvarmsg   0x00025b    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 sendxmsg   0x00022f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                timerinit   0x0000d3    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               usartcheck   0x000138    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                usartinit   0x0000f2    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+             usartroutine   0x00014d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     wait   0x000286    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  welcome   0x0000fd    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 xvoltage   0x000115    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              LINEMSGTEMP   0x000005    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg0   0x000006    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg1   0x000017    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg2   0x000036    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg3   0x000052    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg5   0x00006f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     msg6   0x000090    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                interrupt   0x0000ad    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     main   0x0000c6    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                timerinit   0x0000d3    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   adinit   0x0000db    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  lcdinit   0x0000e3    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                usartinit   0x0000f2    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  welcome   0x0000fd    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    WCMF0   0x000101    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    WCMF1   0x000105    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    WCMF2   0x00010d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 xvoltage   0x000115    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT4   0x000117    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT0   0x00011b    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT2   0x000122    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    XVLT3   0x000128    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               usartcheck   0x000138    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXCF2   0x00013c    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXCF1   0x000147    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+             usartroutine   0x00014d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF0   0x00014f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF2   0x000159    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF1   0x00015d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    TXRF3   0x000167    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     LCDF   0x00016b    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               lcdroutine   0x000170    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      hpc   0x000171    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    HPCF0   0x000181    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    HPCF2   0x000185    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   divide   0x00018e    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    DVLP1   0x000198    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    DVLP2   0x0001a8    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     DVLP   0x0001af    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  getmean   0x0001b2    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 decimals   0x0001de    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     DECC   0x000228    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 sendxmsg   0x00022f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      lpc   0x000233    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    LPCF1   0x00023d    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    LPCF0   0x00023f    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                    LPCF2   0x000241    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  sendmsg   0x000244    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     SNMF   0x000249    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  NEWLINE   0x000258    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               sendvarmsg   0x00025b    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 sendchar   0x000273    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      cmd   0x00027e    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                     wait   0x000286    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                  delay2s   0x00028a    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY4   0x00028c    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+               delay100ms   0x000291    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY3   0x000293    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                 delay5ms   0x000298    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY2   0x00029a    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   DELAY1   0x00029c    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                      inf   0x0002a3    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+                   madinf   0x0002a6    program     static F:\projectX\project(no_usart)\CTSPerrorrecover.asm
+
+

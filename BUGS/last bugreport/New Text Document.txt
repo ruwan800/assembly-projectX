@@ -1,0 +1,50 @@
+interrupt:												234375
+	MOVF	ADRESH,W
+	BANKSEL	tdatah
+
+	BANKSEL	tdatal
+	MOVWF	tdatal
+
+getmean:
+	DECFSZ	meancount,F
+
+	SUBLW	.100
+	BTFSS	bitc
+
+	SUBLW	.60
+	BTFSC	bitc
+
+madinf:
+	GOTO	madinf
+	BCF	STATUS,RP0
+	BCF	STATUS,RP1
+
+DECC:	
+	MOVWF	t1
+	MOVLW	.10
+	SUBWF	t1,W
+	BTFSS	bitc
+	RETURN
+	INCF	t0,F
+	GOTO	DECC
+	
+LCDF
+	CALL	sendmsg
+	CLRF	counth
+	CLRF	countl
+
+
+decimals:(two first d.p.s)
+
+	ADDLW	.5
+	CALL	DECC
+	CALL	inf
+	MOVF	t1,W
+	MOVWF	var5   <<<<<<<<<<<<<<
+	MOVF	t0,W
+	CLRF	t0		;&&&&&&&&&&&&&&&
+	CLRF	t1
+
+	MOVF	t1,W
+	MOVWF	var4  <<<<<<<<<<<<<<<
+	GOTO	sendxmsg

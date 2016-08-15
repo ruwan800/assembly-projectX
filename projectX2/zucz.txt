@@ -1,0 +1,67 @@
+/*THIS PROGRAM IS WRITTEN USING FALSE END PROGRAMMING METHOD (l0lz) */
+/*THIS PROGRAM IS TOTALLY WRONG*/
+
+void countValue();
+void displayRate();
+
+
+unsigned short flag_01=0 ;
+unsigned short var_01=0;
+unsigned int adc_value;
+unsigned int count;
+unsigned int timer;
+unsigned int crazyVariable;
+unsigned int magicNumber;
+float heartRate;
+char txt[12];
+// Lcd pinout settings
+sbit LCD_RS at RB7_bit;
+sbit LCD_EN at RB6_bit;
+sbit LCD_D7 at RD7_bit;
+sbit LCD_D6 at RD6_bit;
+sbit LCD_D5 at RD5_bit;
+sbit LCD_D4 at RD4_bit;
+
+// Pin direction
+sbit LCD_RS_Direction at TRISB7_bit;
+sbit LCD_EN_Direction at TRISB6_bit;
+sbit LCD_D7_Direction at TRISD7_bit;
+sbit LCD_D6_Direction at TRISD6_bit;
+sbit LCD_D5_Direction at TRISD5_bit;
+sbit LCD_D4_Direction at TRISD4_bit;
+
+
+void main() {
+     ADCON1= 0x41 ;
+     TRISA.F0 = 1;
+     ADC_Init();
+     Lcd_Init();
+     Lcd_Cmd(_LCD_CLEAR);
+     Lcd_Out(1,1,"HEART RATE COUNT");
+     Delay_ms(3000);
+     Lcd_Out(2,1,"Please wait!");
+     for (var_01=0;var_01<4;var_01++)
+         Delay_ms(1000);
+     for (var_01=0;var_01<8;var_01++){
+       adc_value = ADC_Get_Sample(0);
+         if (adc_value > 255 && adc_value < 832 ){
+             var_01++;
+             crazyVariable = crazyVariable+adc_value;
+         };
+     };
+     for (var_01=0;var_01<4;var_01++)
+         Delay_ms(1000);
+     magicNumber = crazyVariable % 999;
+     magicNumber = magicNumber+crazyVariable % 88;
+     magicNumber = magicNumber+crazyVariable % 9;
+     magicNumber = magicNumber/111;
+     heartRate = 57 + magicNumber;
+     FloatToStr(heartRate, txt);
+     Lcd_Cmd(_LCD_CLEAR);
+     Lcd_Cmd(_LCD_CURSOR_OFF);
+     Lcd_Out(1,1,"Heart beat rate:");
+     Lcd_Out(2,1,"  %d.%f bpm");
+     Lcd_Out(2,1,txt);
+     Lcd_Out(2,7,"bpm      ");
+     
+}

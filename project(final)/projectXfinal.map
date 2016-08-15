@@ -1,0 +1,160 @@
+MPLINK 4.37, Linker
+Linker Map File - Created Sun May 01 09:24:37 2011
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x000554
+.config_2007_PROJECTXFINAL.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x0002ad      
+                            0x002007    0x002007      
+            684 out of 8453 program addresses used, program memory utilization is 8%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     DECC   0x000227    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY1   0x00029b    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY2   0x000299    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY3   0x000292    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY4   0x00028b    program     static F:\projectX\project(final)\projectXfinal.asm
+                     DVLP   0x0001ae    program     static F:\projectX\project(final)\projectXfinal.asm
+                    DVLP1   0x000197    program     static F:\projectX\project(final)\projectXfinal.asm
+                    DVLP2   0x0001a7    program     static F:\projectX\project(final)\projectXfinal.asm
+                    HPCF0   0x000180    program     static F:\projectX\project(final)\projectXfinal.asm
+                    HPCF2   0x000184    program     static F:\projectX\project(final)\projectXfinal.asm
+                     LCDF   0x00016a    program     static F:\projectX\project(final)\projectXfinal.asm
+              LINEMSGTEMP   0x000005    program     static F:\projectX\project(final)\projectXfinal.asm
+                    LPCF0   0x00023e    program     static F:\projectX\project(final)\projectXfinal.asm
+                    LPCF1   0x00023c    program     static F:\projectX\project(final)\projectXfinal.asm
+                    LPCF2   0x000240    program     static F:\projectX\project(final)\projectXfinal.asm
+                  NEWLINE   0x000257    program     static F:\projectX\project(final)\projectXfinal.asm
+                     SNMF   0x000248    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXCF1   0x000146    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXCF2   0x00013b    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF0   0x00014e    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF1   0x00015c    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF2   0x000158    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF3   0x000166    program     static F:\projectX\project(final)\projectXfinal.asm
+                    WCMF0   0x000101    program     static F:\projectX\project(final)\projectXfinal.asm
+                    WCMF1   0x000105    program     static F:\projectX\project(final)\projectXfinal.asm
+                    WCMF2   0x00010d    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT0   0x00011b    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT2   0x000122    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT3   0x000128    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT4   0x000117    program     static F:\projectX\project(final)\projectXfinal.asm
+                   adinit   0x0000db    program     static F:\projectX\project(final)\projectXfinal.asm
+                      cmd   0x00027d    program     static F:\projectX\project(final)\projectXfinal.asm
+                 decimals   0x0001dd    program     static F:\projectX\project(final)\projectXfinal.asm
+               delay100ms   0x000290    program     static F:\projectX\project(final)\projectXfinal.asm
+                  delay2s   0x000289    program     static F:\projectX\project(final)\projectXfinal.asm
+                 delay5ms   0x000297    program     static F:\projectX\project(final)\projectXfinal.asm
+                   divide   0x00018d    program     static F:\projectX\project(final)\projectXfinal.asm
+                  getmean   0x0001b1    program     static F:\projectX\project(final)\projectXfinal.asm
+                      hpc   0x000170    program     static F:\projectX\project(final)\projectXfinal.asm
+                      inf   0x0002a2    program     static F:\projectX\project(final)\projectXfinal.asm
+                interrupt   0x0000ad    program     static F:\projectX\project(final)\projectXfinal.asm
+                  lcdinit   0x0000e3    program     static F:\projectX\project(final)\projectXfinal.asm
+               lcdroutine   0x00016f    program     static F:\projectX\project(final)\projectXfinal.asm
+                      lpc   0x000232    program     static F:\projectX\project(final)\projectXfinal.asm
+                   madinf   0x0002a5    program     static F:\projectX\project(final)\projectXfinal.asm
+                     main   0x0000c6    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg0   0x000006    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg1   0x000017    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg2   0x000036    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg3   0x000052    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg5   0x00006f    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg6   0x000090    program     static F:\projectX\project(final)\projectXfinal.asm
+                 sendchar   0x000272    program     static F:\projectX\project(final)\projectXfinal.asm
+                  sendmsg   0x000243    program     static F:\projectX\project(final)\projectXfinal.asm
+               sendvarmsg   0x00025a    program     static F:\projectX\project(final)\projectXfinal.asm
+                 sendxmsg   0x00022e    program     static F:\projectX\project(final)\projectXfinal.asm
+                timerinit   0x0000d3    program     static F:\projectX\project(final)\projectXfinal.asm
+               usartcheck   0x000137    program     static F:\projectX\project(final)\projectXfinal.asm
+                usartinit   0x0000f2    program     static F:\projectX\project(final)\projectXfinal.asm
+             usartroutine   0x00014c    program     static F:\projectX\project(final)\projectXfinal.asm
+                     wait   0x000285    program     static F:\projectX\project(final)\projectXfinal.asm
+                  welcome   0x0000fd    program     static F:\projectX\project(final)\projectXfinal.asm
+                 xvoltage   0x000115    program     static F:\projectX\project(final)\projectXfinal.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              LINEMSGTEMP   0x000005    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg0   0x000006    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg1   0x000017    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg2   0x000036    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg3   0x000052    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg5   0x00006f    program     static F:\projectX\project(final)\projectXfinal.asm
+                     msg6   0x000090    program     static F:\projectX\project(final)\projectXfinal.asm
+                interrupt   0x0000ad    program     static F:\projectX\project(final)\projectXfinal.asm
+                     main   0x0000c6    program     static F:\projectX\project(final)\projectXfinal.asm
+                timerinit   0x0000d3    program     static F:\projectX\project(final)\projectXfinal.asm
+                   adinit   0x0000db    program     static F:\projectX\project(final)\projectXfinal.asm
+                  lcdinit   0x0000e3    program     static F:\projectX\project(final)\projectXfinal.asm
+                usartinit   0x0000f2    program     static F:\projectX\project(final)\projectXfinal.asm
+                  welcome   0x0000fd    program     static F:\projectX\project(final)\projectXfinal.asm
+                    WCMF0   0x000101    program     static F:\projectX\project(final)\projectXfinal.asm
+                    WCMF1   0x000105    program     static F:\projectX\project(final)\projectXfinal.asm
+                    WCMF2   0x00010d    program     static F:\projectX\project(final)\projectXfinal.asm
+                 xvoltage   0x000115    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT4   0x000117    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT0   0x00011b    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT2   0x000122    program     static F:\projectX\project(final)\projectXfinal.asm
+                    XVLT3   0x000128    program     static F:\projectX\project(final)\projectXfinal.asm
+               usartcheck   0x000137    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXCF2   0x00013b    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXCF1   0x000146    program     static F:\projectX\project(final)\projectXfinal.asm
+             usartroutine   0x00014c    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF0   0x00014e    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF2   0x000158    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF1   0x00015c    program     static F:\projectX\project(final)\projectXfinal.asm
+                    TXRF3   0x000166    program     static F:\projectX\project(final)\projectXfinal.asm
+                     LCDF   0x00016a    program     static F:\projectX\project(final)\projectXfinal.asm
+               lcdroutine   0x00016f    program     static F:\projectX\project(final)\projectXfinal.asm
+                      hpc   0x000170    program     static F:\projectX\project(final)\projectXfinal.asm
+                    HPCF0   0x000180    program     static F:\projectX\project(final)\projectXfinal.asm
+                    HPCF2   0x000184    program     static F:\projectX\project(final)\projectXfinal.asm
+                   divide   0x00018d    program     static F:\projectX\project(final)\projectXfinal.asm
+                    DVLP1   0x000197    program     static F:\projectX\project(final)\projectXfinal.asm
+                    DVLP2   0x0001a7    program     static F:\projectX\project(final)\projectXfinal.asm
+                     DVLP   0x0001ae    program     static F:\projectX\project(final)\projectXfinal.asm
+                  getmean   0x0001b1    program     static F:\projectX\project(final)\projectXfinal.asm
+                 decimals   0x0001dd    program     static F:\projectX\project(final)\projectXfinal.asm
+                     DECC   0x000227    program     static F:\projectX\project(final)\projectXfinal.asm
+                 sendxmsg   0x00022e    program     static F:\projectX\project(final)\projectXfinal.asm
+                      lpc   0x000232    program     static F:\projectX\project(final)\projectXfinal.asm
+                    LPCF1   0x00023c    program     static F:\projectX\project(final)\projectXfinal.asm
+                    LPCF0   0x00023e    program     static F:\projectX\project(final)\projectXfinal.asm
+                    LPCF2   0x000240    program     static F:\projectX\project(final)\projectXfinal.asm
+                  sendmsg   0x000243    program     static F:\projectX\project(final)\projectXfinal.asm
+                     SNMF   0x000248    program     static F:\projectX\project(final)\projectXfinal.asm
+                  NEWLINE   0x000257    program     static F:\projectX\project(final)\projectXfinal.asm
+               sendvarmsg   0x00025a    program     static F:\projectX\project(final)\projectXfinal.asm
+                 sendchar   0x000272    program     static F:\projectX\project(final)\projectXfinal.asm
+                      cmd   0x00027d    program     static F:\projectX\project(final)\projectXfinal.asm
+                     wait   0x000285    program     static F:\projectX\project(final)\projectXfinal.asm
+                  delay2s   0x000289    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY4   0x00028b    program     static F:\projectX\project(final)\projectXfinal.asm
+               delay100ms   0x000290    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY3   0x000292    program     static F:\projectX\project(final)\projectXfinal.asm
+                 delay5ms   0x000297    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY2   0x000299    program     static F:\projectX\project(final)\projectXfinal.asm
+                   DELAY1   0x00029b    program     static F:\projectX\project(final)\projectXfinal.asm
+                      inf   0x0002a2    program     static F:\projectX\project(final)\projectXfinal.asm
+                   madinf   0x0002a5    program     static F:\projectX\project(final)\projectXfinal.asm
+
+

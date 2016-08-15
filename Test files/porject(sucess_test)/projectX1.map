@@ -1,0 +1,162 @@
+MPLINK 4.37, Linker
+Linker Map File - Created Fri Apr 29 16:05:34 2011
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x00057a
+ .config_2007_PROJECTX1.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x0002c0      
+                            0x002007    0x002007      
+            703 out of 8453 program addresses used, program memory utilization is 8%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     DECC   0x000236    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY1   0x0002aa    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY2   0x0002a8    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY3   0x0002a1    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY4   0x00029a    program     static E:\Assembly\ApY\projectX1.asm
+                     DVLP   0x0001bd    program     static E:\Assembly\ApY\projectX1.asm
+                    DVLP1   0x0001a6    program     static E:\Assembly\ApY\projectX1.asm
+                    DVLP2   0x0001b6    program     static E:\Assembly\ApY\projectX1.asm
+                    HPCF0   0x00018f    program     static E:\Assembly\ApY\projectX1.asm
+                    HPCF2   0x000193    program     static E:\Assembly\ApY\projectX1.asm
+                     LCDF   0x000179    program     static E:\Assembly\ApY\projectX1.asm
+              LINEMSGTEMP   0x000005    program     static E:\Assembly\ApY\projectX1.asm
+                    LPCF0   0x00024d    program     static E:\Assembly\ApY\projectX1.asm
+                    LPCF1   0x00024b    program     static E:\Assembly\ApY\projectX1.asm
+                    LPCF2   0x00024f    program     static E:\Assembly\ApY\projectX1.asm
+                  NEWLINE   0x000266    program     static E:\Assembly\ApY\projectX1.asm
+                     SNMF   0x000257    program     static E:\Assembly\ApY\projectX1.asm
+                    TXCF1   0x000155    program     static E:\Assembly\ApY\projectX1.asm
+                    TXCF2   0x00014a    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF0   0x00015d    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF1   0x00016b    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF2   0x000167    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF3   0x000175    program     static E:\Assembly\ApY\projectX1.asm
+                    WCMF0   0x00010f    program     static E:\Assembly\ApY\projectX1.asm
+                    WCMF1   0x000113    program     static E:\Assembly\ApY\projectX1.asm
+                    WCMF2   0x00011b    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT0   0x000129    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT2   0x000130    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT3   0x000136    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT4   0x000125    program     static E:\Assembly\ApY\projectX1.asm
+                   adinit   0x0000e9    program     static E:\Assembly\ApY\projectX1.asm
+                      cmd   0x00028c    program     static E:\Assembly\ApY\projectX1.asm
+                 decimals   0x0001ec    program     static E:\Assembly\ApY\projectX1.asm
+               delay100ms   0x00029f    program     static E:\Assembly\ApY\projectX1.asm
+                  delay2s   0x000298    program     static E:\Assembly\ApY\projectX1.asm
+                 delay5ms   0x0002a6    program     static E:\Assembly\ApY\projectX1.asm
+                   divide   0x00019c    program     static E:\Assembly\ApY\projectX1.asm
+                  getmean   0x0001c0    program     static E:\Assembly\ApY\projectX1.asm
+                      hpc   0x00017f    program     static E:\Assembly\ApY\projectX1.asm
+                      inf   0x0002b1    program     static E:\Assembly\ApY\projectX1.asm
+                interrupt   0x0000ad    program     static E:\Assembly\ApY\projectX1.asm
+                  lcdinit   0x0000f1    program     static E:\Assembly\ApY\projectX1.asm
+               lcdroutine   0x00017e    program     static E:\Assembly\ApY\projectX1.asm
+                      lpc   0x000241    program     static E:\Assembly\ApY\projectX1.asm
+                   madinf   0x0002b4    program     static E:\Assembly\ApY\projectX1.asm
+                     main   0x0000d4    program     static E:\Assembly\ApY\projectX1.asm
+                     msg0   0x000006    program     static E:\Assembly\ApY\projectX1.asm
+                     msg1   0x000017    program     static E:\Assembly\ApY\projectX1.asm
+                     msg2   0x000036    program     static E:\Assembly\ApY\projectX1.asm
+                     msg3   0x000052    program     static E:\Assembly\ApY\projectX1.asm
+                     msg5   0x00006f    program     static E:\Assembly\ApY\projectX1.asm
+                     msg6   0x000090    program     static E:\Assembly\ApY\projectX1.asm
+                 sendchar   0x000281    program     static E:\Assembly\ApY\projectX1.asm
+                  sendmsg   0x000252    program     static E:\Assembly\ApY\projectX1.asm
+               sendvarmsg   0x000269    program     static E:\Assembly\ApY\projectX1.asm
+                 sendxmsg   0x00023d    program     static E:\Assembly\ApY\projectX1.asm
+                 testfunc   0x0000c7    program     static E:\Assembly\ApY\projectX1.asm
+                timerinit   0x0000e1    program     static E:\Assembly\ApY\projectX1.asm
+               usartcheck   0x000146    program     static E:\Assembly\ApY\projectX1.asm
+                usartinit   0x000100    program     static E:\Assembly\ApY\projectX1.asm
+             usartroutine   0x00015b    program     static E:\Assembly\ApY\projectX1.asm
+                     wait   0x000294    program     static E:\Assembly\ApY\projectX1.asm
+                  welcome   0x00010b    program     static E:\Assembly\ApY\projectX1.asm
+                 xvoltage   0x000123    program     static E:\Assembly\ApY\projectX1.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              LINEMSGTEMP   0x000005    program     static E:\Assembly\ApY\projectX1.asm
+                     msg0   0x000006    program     static E:\Assembly\ApY\projectX1.asm
+                     msg1   0x000017    program     static E:\Assembly\ApY\projectX1.asm
+                     msg2   0x000036    program     static E:\Assembly\ApY\projectX1.asm
+                     msg3   0x000052    program     static E:\Assembly\ApY\projectX1.asm
+                     msg5   0x00006f    program     static E:\Assembly\ApY\projectX1.asm
+                     msg6   0x000090    program     static E:\Assembly\ApY\projectX1.asm
+                interrupt   0x0000ad    program     static E:\Assembly\ApY\projectX1.asm
+                 testfunc   0x0000c7    program     static E:\Assembly\ApY\projectX1.asm
+                     main   0x0000d4    program     static E:\Assembly\ApY\projectX1.asm
+                timerinit   0x0000e1    program     static E:\Assembly\ApY\projectX1.asm
+                   adinit   0x0000e9    program     static E:\Assembly\ApY\projectX1.asm
+                  lcdinit   0x0000f1    program     static E:\Assembly\ApY\projectX1.asm
+                usartinit   0x000100    program     static E:\Assembly\ApY\projectX1.asm
+                  welcome   0x00010b    program     static E:\Assembly\ApY\projectX1.asm
+                    WCMF0   0x00010f    program     static E:\Assembly\ApY\projectX1.asm
+                    WCMF1   0x000113    program     static E:\Assembly\ApY\projectX1.asm
+                    WCMF2   0x00011b    program     static E:\Assembly\ApY\projectX1.asm
+                 xvoltage   0x000123    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT4   0x000125    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT0   0x000129    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT2   0x000130    program     static E:\Assembly\ApY\projectX1.asm
+                    XVLT3   0x000136    program     static E:\Assembly\ApY\projectX1.asm
+               usartcheck   0x000146    program     static E:\Assembly\ApY\projectX1.asm
+                    TXCF2   0x00014a    program     static E:\Assembly\ApY\projectX1.asm
+                    TXCF1   0x000155    program     static E:\Assembly\ApY\projectX1.asm
+             usartroutine   0x00015b    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF0   0x00015d    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF2   0x000167    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF1   0x00016b    program     static E:\Assembly\ApY\projectX1.asm
+                    TXRF3   0x000175    program     static E:\Assembly\ApY\projectX1.asm
+                     LCDF   0x000179    program     static E:\Assembly\ApY\projectX1.asm
+               lcdroutine   0x00017e    program     static E:\Assembly\ApY\projectX1.asm
+                      hpc   0x00017f    program     static E:\Assembly\ApY\projectX1.asm
+                    HPCF0   0x00018f    program     static E:\Assembly\ApY\projectX1.asm
+                    HPCF2   0x000193    program     static E:\Assembly\ApY\projectX1.asm
+                   divide   0x00019c    program     static E:\Assembly\ApY\projectX1.asm
+                    DVLP1   0x0001a6    program     static E:\Assembly\ApY\projectX1.asm
+                    DVLP2   0x0001b6    program     static E:\Assembly\ApY\projectX1.asm
+                     DVLP   0x0001bd    program     static E:\Assembly\ApY\projectX1.asm
+                  getmean   0x0001c0    program     static E:\Assembly\ApY\projectX1.asm
+                 decimals   0x0001ec    program     static E:\Assembly\ApY\projectX1.asm
+                     DECC   0x000236    program     static E:\Assembly\ApY\projectX1.asm
+                 sendxmsg   0x00023d    program     static E:\Assembly\ApY\projectX1.asm
+                      lpc   0x000241    program     static E:\Assembly\ApY\projectX1.asm
+                    LPCF1   0x00024b    program     static E:\Assembly\ApY\projectX1.asm
+                    LPCF0   0x00024d    program     static E:\Assembly\ApY\projectX1.asm
+                    LPCF2   0x00024f    program     static E:\Assembly\ApY\projectX1.asm
+                  sendmsg   0x000252    program     static E:\Assembly\ApY\projectX1.asm
+                     SNMF   0x000257    program     static E:\Assembly\ApY\projectX1.asm
+                  NEWLINE   0x000266    program     static E:\Assembly\ApY\projectX1.asm
+               sendvarmsg   0x000269    program     static E:\Assembly\ApY\projectX1.asm
+                 sendchar   0x000281    program     static E:\Assembly\ApY\projectX1.asm
+                      cmd   0x00028c    program     static E:\Assembly\ApY\projectX1.asm
+                     wait   0x000294    program     static E:\Assembly\ApY\projectX1.asm
+                  delay2s   0x000298    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY4   0x00029a    program     static E:\Assembly\ApY\projectX1.asm
+               delay100ms   0x00029f    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY3   0x0002a1    program     static E:\Assembly\ApY\projectX1.asm
+                 delay5ms   0x0002a6    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY2   0x0002a8    program     static E:\Assembly\ApY\projectX1.asm
+                   DELAY1   0x0002aa    program     static E:\Assembly\ApY\projectX1.asm
+                      inf   0x0002b1    program     static E:\Assembly\ApY\projectX1.asm
+                   madinf   0x0002b4    program     static E:\Assembly\ApY\projectX1.asm
+
+

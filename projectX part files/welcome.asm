@@ -1,0 +1,26 @@
+
+
+welcome:
+	MOVLW	msg0
+	CALL	sendmsg
+WCMF0:	MOVLW	0xC0
+	CALL	cmd
+	MOVLW	0x10
+	MOVWF	msgptr
+	MOVLW	0x03
+	MOVWF	txchk
+WCMF1:	MOVLW	0xFF
+	CALL	sendchar
+	DECFSZ	msgptr,F
+	GOTO	WCMF1
+	MOVLW	0xC0
+	CALL	cmd
+	MOVLW	0x19
+	MOVWF	msgptr
+WCMF2:	MOVLW	0x20
+	CALL	sendchar
+	DECFSZ	msgptr,F
+	GOTO	WCMF2
+	DECFSZ	txchk
+	GOTO	WCMF0
+

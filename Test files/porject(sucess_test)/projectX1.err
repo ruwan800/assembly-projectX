@@ -1,0 +1,45 @@
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 8 : Found directive in column 1. (LIST)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 11 : Found directive in column 1. (__config)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 23 : Found directive in column 1. (cblock)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 40 : Found directive in column 1. (ENDC)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 52 : Found directive in column 1. (ORG)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 53 : Found opcode in column 1. (GOTO)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 54 : Found directive in column 1. (ORG)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 55 : Found opcode in column 1. (GOTO)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 70 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 71 : Found opcode in column 1. (BCF)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 72 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 73 : Found opcode in column 1. (BCF)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 74 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 75 : Found opcode in column 1. (MOVF)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 76 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 77 : Found opcode in column 1. (MOVWF)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 78 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 79 : Found opcode in column 1. (MOVF)
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 79 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 80 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 81 : Found opcode in column 1. (MOVWF)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 82 : Found opcode in column 1. (CALL)
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 83 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 84 : Found opcode in column 1. (BSF)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 85 : Found opcode in column 1. (INCFSZ)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 86 : Found opcode in column 1. (RETFIE)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 87 : Found opcode in column 1. (INCF)
+Warning[203] E:\ASSEMBLY\APY\PROJECTX1.ASM 88 : Found opcode in column 1. (RETFIE)
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 107 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 108 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 109 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 114 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 115 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 123 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 128 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 154 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 155 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 158 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 236 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 249 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 259 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] E:\ASSEMBLY\APY\PROJECTX1.ASM 268 : Using default destination of 1 (file).
+Message[302] E:\ASSEMBLY\APY\PROJECTX1.ASM 274 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] E:\ASSEMBLY\APY\PROJECTX1.ASM 283 : Using default destination of 1 (file).
+Warning[205] E:\ASSEMBLY\APY\PROJECTX1.ASM 664 : Found directive in column 1. (END)

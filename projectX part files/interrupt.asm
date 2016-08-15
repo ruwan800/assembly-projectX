@@ -1,0 +1,22 @@
+ORG	0x0004		;interrupt
+MOVLW	0xD1		;timer reset
+MOVWF	TMR0
+BANKSEL	INTCON
+BCF	INTCON,T0IF
+BANKSEL	interren
+BCF	interren
+BANKSEL	interren
+BCF	interren
+BANKSEL	ADRESH		;adget
+MOVF	ADRESH,W
+MOVWF	tdatah
+BANKSEL	ADRESL
+MOVF	ADRESL,W
+MOVWF	tdatal
+BANKSEL	ADCON0		;adset	
+BSF	ADCON0,GO	;godone bit set here
+INCFSZ	countl,F
+RETURN
+INCF	counth,F
+RETURN
+

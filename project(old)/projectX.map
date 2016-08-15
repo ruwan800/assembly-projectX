@@ -1,0 +1,140 @@
+MPLINK 4.37, Linker
+Linker Map File - Created Mon Apr 25 00:15:53 2011
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x00050a
+  .config_2007_PROJECTX.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x000288      
+                            0x002007    0x002007      
+            647 out of 8453 program addresses used, program memory utilization is 7%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     DECC   0x000221    program     static E:\Assembly\ApX\projectX.asm
+                     DVLP   0x0001a8    program     static E:\Assembly\ApX\projectX.asm
+                    DVLP1   0x000190    program     static E:\Assembly\ApX\projectX.asm
+                    DVLP2   0x0001a0    program     static E:\Assembly\ApX\projectX.asm
+                    HPCF0   0x00017a    program     static E:\Assembly\ApX\projectX.asm
+                    HPCF2   0x00017e    program     static E:\Assembly\ApX\projectX.asm
+                     LCDF   0x000166    program     static E:\Assembly\ApX\projectX.asm
+              LINEMSGTEMP   0x000005    program     static E:\Assembly\ApX\projectX.asm
+                    LPCF0   0x000237    program     static E:\Assembly\ApX\projectX.asm
+                    LPCF1   0x000235    program     static E:\Assembly\ApX\projectX.asm
+                    LPCF2   0x000239    program     static E:\Assembly\ApX\projectX.asm
+                  NEWLINE   0x00024c    program     static E:\Assembly\ApX\projectX.asm
+                    TXCF1   0x000144    program     static E:\Assembly\ApX\projectX.asm
+                    TXCF2   0x000139    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF0   0x00014c    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF1   0x000159    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF2   0x000155    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF3   0x000162    program     static E:\Assembly\ApX\projectX.asm
+                    WCMF0   0x0000ff    program     static E:\Assembly\ApX\projectX.asm
+                    WCMF1   0x000105    program     static E:\Assembly\ApX\projectX.asm
+                    WCMF2   0x00010d    program     static E:\Assembly\ApX\projectX.asm
+                    XVLT0   0x000119    program     static E:\Assembly\ApX\projectX.asm
+                    XVLT2   0x000120    program     static E:\Assembly\ApX\projectX.asm
+                    XVLT3   0x000126    program     static E:\Assembly\ApX\projectX.asm
+                   adinit   0x0000dc    program     static E:\Assembly\ApX\projectX.asm
+                      cmd   0x000276    program     static E:\Assembly\ApX\projectX.asm
+                 decimals   0x0001d7    program     static E:\Assembly\ApX\projectX.asm
+                   divide   0x000186    program     static E:\Assembly\ApX\projectX.asm
+                  getmean   0x0001ab    program     static E:\Assembly\ApX\projectX.asm
+                      hpc   0x00016a    program     static E:\Assembly\ApX\projectX.asm
+                      inf   0x000282    program     static E:\Assembly\ApX\projectX.asm
+                interrupt   0x0000ad    program     static E:\Assembly\ApX\projectX.asm
+                  lcdinit   0x0000e4    program     static E:\Assembly\ApX\projectX.asm
+               lcdroutine   0x000169    program     static E:\Assembly\ApX\projectX.asm
+                      lpc   0x00022b    program     static E:\Assembly\ApX\projectX.asm
+                   madinf   0x000285    program     static E:\Assembly\ApX\projectX.asm
+                     main   0x0000c7    program     static E:\Assembly\ApX\projectX.asm
+                     msg0   0x000006    program     static E:\Assembly\ApX\projectX.asm
+                     msg1   0x000017    program     static E:\Assembly\ApX\projectX.asm
+                     msg2   0x000036    program     static E:\Assembly\ApX\projectX.asm
+                     msg3   0x000052    program     static E:\Assembly\ApX\projectX.asm
+                     msg5   0x00006f    program     static E:\Assembly\ApX\projectX.asm
+                     msg6   0x000090    program     static E:\Assembly\ApX\projectX.asm
+                 sendchar   0x000267    program     static E:\Assembly\ApX\projectX.asm
+                  sendmsg   0x00023c    program     static E:\Assembly\ApX\projectX.asm
+               sendvarmsg   0x00024f    program     static E:\Assembly\ApX\projectX.asm
+                 sendxmsg   0x000227    program     static E:\Assembly\ApX\projectX.asm
+                timerinit   0x0000d4    program     static E:\Assembly\ApX\projectX.asm
+               usartcheck   0x000135    program     static E:\Assembly\ApX\projectX.asm
+                usartinit   0x0000f2    program     static E:\Assembly\ApX\projectX.asm
+             usartroutine   0x00014a    program     static E:\Assembly\ApX\projectX.asm
+                  welcome   0x0000fd    program     static E:\Assembly\ApX\projectX.asm
+                 xvoltage   0x000115    program     static E:\Assembly\ApX\projectX.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              LINEMSGTEMP   0x000005    program     static E:\Assembly\ApX\projectX.asm
+                     msg0   0x000006    program     static E:\Assembly\ApX\projectX.asm
+                     msg1   0x000017    program     static E:\Assembly\ApX\projectX.asm
+                     msg2   0x000036    program     static E:\Assembly\ApX\projectX.asm
+                     msg3   0x000052    program     static E:\Assembly\ApX\projectX.asm
+                     msg5   0x00006f    program     static E:\Assembly\ApX\projectX.asm
+                     msg6   0x000090    program     static E:\Assembly\ApX\projectX.asm
+                interrupt   0x0000ad    program     static E:\Assembly\ApX\projectX.asm
+                     main   0x0000c7    program     static E:\Assembly\ApX\projectX.asm
+                timerinit   0x0000d4    program     static E:\Assembly\ApX\projectX.asm
+                   adinit   0x0000dc    program     static E:\Assembly\ApX\projectX.asm
+                  lcdinit   0x0000e4    program     static E:\Assembly\ApX\projectX.asm
+                usartinit   0x0000f2    program     static E:\Assembly\ApX\projectX.asm
+                  welcome   0x0000fd    program     static E:\Assembly\ApX\projectX.asm
+                    WCMF0   0x0000ff    program     static E:\Assembly\ApX\projectX.asm
+                    WCMF1   0x000105    program     static E:\Assembly\ApX\projectX.asm
+                    WCMF2   0x00010d    program     static E:\Assembly\ApX\projectX.asm
+                 xvoltage   0x000115    program     static E:\Assembly\ApX\projectX.asm
+                    XVLT0   0x000119    program     static E:\Assembly\ApX\projectX.asm
+                    XVLT2   0x000120    program     static E:\Assembly\ApX\projectX.asm
+                    XVLT3   0x000126    program     static E:\Assembly\ApX\projectX.asm
+               usartcheck   0x000135    program     static E:\Assembly\ApX\projectX.asm
+                    TXCF2   0x000139    program     static E:\Assembly\ApX\projectX.asm
+                    TXCF1   0x000144    program     static E:\Assembly\ApX\projectX.asm
+             usartroutine   0x00014a    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF0   0x00014c    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF2   0x000155    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF1   0x000159    program     static E:\Assembly\ApX\projectX.asm
+                    TXRF3   0x000162    program     static E:\Assembly\ApX\projectX.asm
+                     LCDF   0x000166    program     static E:\Assembly\ApX\projectX.asm
+               lcdroutine   0x000169    program     static E:\Assembly\ApX\projectX.asm
+                      hpc   0x00016a    program     static E:\Assembly\ApX\projectX.asm
+                    HPCF0   0x00017a    program     static E:\Assembly\ApX\projectX.asm
+                    HPCF2   0x00017e    program     static E:\Assembly\ApX\projectX.asm
+                   divide   0x000186    program     static E:\Assembly\ApX\projectX.asm
+                    DVLP1   0x000190    program     static E:\Assembly\ApX\projectX.asm
+                    DVLP2   0x0001a0    program     static E:\Assembly\ApX\projectX.asm
+                     DVLP   0x0001a8    program     static E:\Assembly\ApX\projectX.asm
+                  getmean   0x0001ab    program     static E:\Assembly\ApX\projectX.asm
+                 decimals   0x0001d7    program     static E:\Assembly\ApX\projectX.asm
+                     DECC   0x000221    program     static E:\Assembly\ApX\projectX.asm
+                 sendxmsg   0x000227    program     static E:\Assembly\ApX\projectX.asm
+                      lpc   0x00022b    program     static E:\Assembly\ApX\projectX.asm
+                    LPCF1   0x000235    program     static E:\Assembly\ApX\projectX.asm
+                    LPCF0   0x000237    program     static E:\Assembly\ApX\projectX.asm
+                    LPCF2   0x000239    program     static E:\Assembly\ApX\projectX.asm
+                  sendmsg   0x00023c    program     static E:\Assembly\ApX\projectX.asm
+                  NEWLINE   0x00024c    program     static E:\Assembly\ApX\projectX.asm
+               sendvarmsg   0x00024f    program     static E:\Assembly\ApX\projectX.asm
+                 sendchar   0x000267    program     static E:\Assembly\ApX\projectX.asm
+                      cmd   0x000276    program     static E:\Assembly\ApX\projectX.asm
+                      inf   0x000282    program     static E:\Assembly\ApX\projectX.asm
+                   madinf   0x000285    program     static E:\Assembly\ApX\projectX.asm
+
+

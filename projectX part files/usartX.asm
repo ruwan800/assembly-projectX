@@ -1,0 +1,59 @@
+usartinit:
+	BANKSEL	RCSTA
+	BSF	RCSTA,SPEN
+	BANKSEL	TXSTA
+	BSF	TXSTA,TXEN
+	BSF	TXSTA,BRGH
+	BANKSEL	SPBRG		;setting up baud rate
+	MOVLW	D'25'
+	MOVWF	SPBRG	
+
+usartcheck:
+	CLRF	txchk
+	CLRF	txchk1
+	BSF	txchk,7
+	BSF	txchk1,6
+TXCF2:	BANKSEL	TXSTA
+	BTFSS	TXSTA,TRMT
+	GOTO	TXCF1
+	MOVLW	0xFF
+	MOVWF	TXREG
+	DECFSZ	txchk1,F
+	GOTO	TXCF1
+	MOVLW	msg6
+	CALL	sendmsg
+	GOTO	usartroutine
+TXCF1:	DECFSZ	txchk,F
+	GOTO	TXCF2
+	BANKSEL	TXSTA
+	BCF	TXSTA,TXEN
+	GOTO	lcdroutine
+
+
+usartroutine:
+	CLRF	txchk
+	BSF	txchk,7
+TXRF0:	BANKSEL	TXSTA
+	BTFSC	TXSTA,TRMT
+	GOTO	TXRF2
+	DECFSZ	txchk,F
+	GOTO	TXRF0	
+	MOVLW	msg1
+	CALL	sendmsg
+	GOTO	usartcheck
+TXRF2:	MOVF	tdatah
+	MOVWF	TXREG
+	CLRF	txchk
+	BSF	txchk,7
+TXRF1:	BANKSEL	TXSTA
+	BTFSC	TXSTA,TRMT
+	GOTO	TXRF3
+	DECFSZ	txchk,F
+	GOTO	TXRF1	
+	MOVLW	msg1
+	CALL	sendmsg
+	GOTO	usartcheck
+TXRF3:	MOVF	tdatal
+	MOVWF	TXREG
+	CALL	inf
+	GOTO	usartroutine	

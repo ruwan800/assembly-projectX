@@ -1,0 +1,44 @@
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 9 : Found directive in column 1. (LIST)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 12 : Found directive in column 1. (__config)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 24 : Found directive in column 1. (cblock)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 41 : Found directive in column 1. (ENDC)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 53 : Found directive in column 1. (ORG)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 54 : Found opcode in column 1. (GOTO)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 55 : Found directive in column 1. (ORG)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 56 : Found opcode in column 1. (GOTO)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 71 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 72 : Found opcode in column 1. (BCF)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 73 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 74 : Found opcode in column 1. (BCF)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 75 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 76 : Found opcode in column 1. (MOVF)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 77 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 78 : Found opcode in column 1. (MOVWF)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 79 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 80 : Found opcode in column 1. (MOVF)
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 80 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 81 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 82 : Found opcode in column 1. (MOVWF)
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 83 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 84 : Found opcode in column 1. (BSF)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 85 : Found opcode in column 1. (INCFSZ)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 86 : Found opcode in column 1. (RETFIE)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 87 : Found opcode in column 1. (INCF)
+Warning[203] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 88 : Found opcode in column 1. (RETFIE)
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 94 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 95 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 96 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 101 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 102 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 110 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 115 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 141 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 142 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 145 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 223 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 236 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 246 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 255 : Using default destination of 1 (file).
+Message[302] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 261 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 270 : Using default destination of 1 (file).
+Warning[205] F:\PROJECTX\PROJECT(NO_USART)\CTSPERRORRECOVER.ASM 645 : Found directive in column 1. (END)

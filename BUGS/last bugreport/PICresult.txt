@@ -1,0 +1,20 @@
+finalmean=96
+finalmeanf=0C
+tcounth=06
+tcountl=1A
+meancount=8
+tdatah=01
+tdatal=00
+decerr=02
+margin=61
+m7=00 ,m6=00 ,m5=96 ,m4=0C ,m3=0C ,m2=96 ,m1=0C ,m0=00
+txchk=00
+txchk1=00
+msgptr=6F
+var0=01 ,var1=05 ,var2=00 ,var3=00 ,var4=04 ,var5=00
+lcdptr=41
+tempchar=7C
+t0=00 ,t1=00 ,t2=00 ,t3=00 ,t4=00 ,t5=00 ,t6=00 ,t7=C8 ,t8=01 ,t9=00
+lowvolt=01 ,highvolt=81 
+
+

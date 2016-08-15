@@ -1,0 +1,44 @@
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 8 : Found directive in column 1. (LIST)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 11 : Found directive in column 1. (__config)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 23 : Found directive in column 1. (cblock)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 40 : Found directive in column 1. (ENDC)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 52 : Found directive in column 1. (ORG)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 53 : Found opcode in column 1. (GOTO)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 54 : Found directive in column 1. (ORG)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 55 : Found opcode in column 1. (GOTO)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 70 : Found opcode in column 1. (MOVLW)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 71 : Found opcode in column 1. (MOVWF)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 72 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 73 : Found opcode in column 1. (BCF)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 74 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 75 : Found opcode in column 1. (BCF)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 76 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 77 : Found opcode in column 1. (MOVF)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 78 : Found opcode in column 1. (MOVWF)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 79 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 80 : Found opcode in column 1. (MOVF)
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 80 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 81 : Found opcode in column 1. (MOVWF)
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 82 : Found directive in column 1. (BANKSEL)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 83 : Found opcode in column 1. (BSF)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 84 : Found opcode in column 1. (INCFSZ)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 85 : Found opcode in column 1. (RETFIE)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 86 : Found opcode in column 1. (INCF)
+Warning[203] E:\ASSEMBLY\APX\PROJECTX.ASM 87 : Found opcode in column 1. (RETFIE)
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 94 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 95 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 96 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 101 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 102 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 110 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 115 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 141 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 142 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 145 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 226 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 239 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 249 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] E:\ASSEMBLY\APX\PROJECTX.ASM 258 : Using default destination of 1 (file).
+Message[302] E:\ASSEMBLY\APX\PROJECTX.ASM 264 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] E:\ASSEMBLY\APX\PROJECTX.ASM 273 : Using default destination of 1 (file).
+Warning[205] E:\ASSEMBLY\APX\PROJECTX.ASM 644 : Found directive in column 1. (END)

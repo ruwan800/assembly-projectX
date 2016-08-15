@@ -1,0 +1,1296 @@
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;projectX
+                      00002 ;HEART BEAT MEASURING UNIT
+                      00003 ;FIT_B10
+                      00004 ;Sun 24 Apr 2011 08:37:52 PM IST
+                      00005 ;ortiginally writtrn by ruwan jayasinghe
+                      00006 
+                      00007 
+Warning[205]: Found directive in column 1. (LIST)
+                      00008 LIST P=16F877A
+                      00009 #INCLUDE"P16F877A.INC"
+                      00001         LIST
+                      00002 ; P16F877A.INC  Standard Header File, Version 1.00    Microchip Technology, Inc.
+                      00400         LIST
+                      00010 
+Warning[205]: Found directive in column 1. (__config)
+2007   3F39           00011 __config  _CP_OFF & _WDT_OFF & _BODEN_OFF & _PWRTE_OFF & _XT_OSC & _LVP_OFF 
+                      00012 
+                      00013 ;######################################################################
+                      00014 
+                      00015 #define bitz            STATUS,Z
+                      00016 #define bitc            STATUS,C
+                      00017 #define interren        INTCON,T0IE             ;timer interrupt enable bit
+                      00018 #define dataen          PORTB,0                 ;select instruction registry
+                      00019 #define signalen        PORTB,1                 ;signal enable bit
+                      00020 #define dataport        PORTD                   ;PORT used to send data
+                      00021 #define bitbuzz         PORTB,2                 ;port bit of buzzer pwr
+                      00022 
+Warning[205]: Found directive in column 1. (cblock)
+                      00023 cblock  0x20
+  00000020            00024         finalmean,finalmeanf    ;0x20:used to save final result of
+  00000022            00025         counth,countl   ;0x22:clock counter values
+  00000024            00026         tcounth,tcountl ;0x24:clock counter values saved for further usage
+  00000026            00027         meancount               ;0x26:8bit counter
+  00000027            00028         tdatah,tdatal   ;0x27:a/d converted values
+  00000029            00029         decerr          ;0x29:error count in high pulse check
+  0000002A            00030         margin          ;0x2A:saves the median voltage
+  0000002B            00031         m7,m6,m5,m4,m3,m2,m1,m0 ;0x2B:divide func t8:t7:t6/tcounth:tcountl=[m1.m0]
+  00000033            00032         txchk,txchk1    ;0x34:counter
+  00000035            00033         msgptr          ;0x36:data table reading pointer
+  00000036            00034         var0,var1,var2,var3,var4,var5;0x37:
+  0000003C            00035         lcdptr          ;0x3D:
+  0000003D            00036         tempchar                ;0x3E:
+  0000003E            00037         t0,t1,t2,t3,t4,t5,t6,t7,t8,t9;0x3F:
+  00000048            00038         lowvolt,highvolt        ;0x49:
+  0000004A            00039         TIME1,TIME2,TIME3,TIME4;0x4A:
+Warning[205]: Found directive in column 1. (ENDC)
+                      00040 endc
+                      00041 
+                      00042 ;######################################################################
+                      00043 
+                      00044 signal  MACRO
+                      00045         BSF     signalen
+                      00046         NOP
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00047         BCF     signalen
+                      00048         ENDM
+                      00049 
+                      00050 ;######################################################################
+                      00051 
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00052 ORG     0x0000
+Warning[203]: Found opcode in column 1. (GOTO)
+0000   28C4           00053 GOTO    main
+Warning[205]: Found directive in column 1. (ORG)
+0004                  00054 ORG     0x0004          ;interrupt
+Warning[203]: Found opcode in column 1. (GOTO)
+0004   28AD           00055 GOTO    interrupt
+                      00056 
+0005                  00057 LINEMSGTEMP:
+0005   0082           00058         MOVWF   PCL
+                      00059 
+0006   3448 3445 3441 00060 msg0    DT      "HEART BEAT COUNT|"                     ;welcome message
+       3452 3454 3420 
+       3442 3445 3441 
+       3454 3420 3443 
+       344F 3455 344E 
+       3454 347C 
+0017   3465 3472 3472 00061 msg1    DT      "error in serial_  transmitting|"
+       346F 3472 3420 
+       3469 346E 3420 
+       3473 3465 3472 
+       3469 3461 346C 
+       345F 3420 3420 
+       3474 3472 3461 
+       346E 3473 346D 
+       3469 3474 3474 
+       3469 346E 3467 
+       347C 
+0036   3420 3420 3450 00062 msg2    DT      "  Please wait_  few seconds|"          ;wait for sampling heart beat
+       346C 3465 3461 
+       3473 3465 3420 
+       3477 3461 3469 
+       3474 345F 3420 
+       3420 3466 3465 
+       3477 3420 3473 
+       3465 3463 346F 
+       346E 3464 3473 
+       347C 
+0052   3448 3465 3461 00063 msg3    DT      "Heart beat rate:_  %d.%f bpm|"         ;heart beat rate display
+       3472 3474 3420 
+       3462 3465 3461 
+       3474 3420 3472 
+       3461 3474 3465 
+       343A 345F 3420 
+       3420 3425 3464 
+       342E 3425 3466 
+       3420 3462 3470 
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+       346D 347C 
+006F   3465 3472 3472 00064 msg5    DT      "error detecting_heart beat pulse|"
+       346F 3472 3420 
+       3464 3465 3474 
+       3465 3463 3474 
+       3469 346E 3467 
+       345F 3468 3465 
+       3461 3472 3474 
+       3420 3462 3465 
+       3461 3474 3420 
+       3470 3475 346C 
+       3473 3465 347C 
+0090   3420 3420 3463 00065 msg6    DT      "  connected to_  serial port|"
+       346F 346E 346E 
+       3465 3463 3474 
+       3465 3464 3420 
+       3474 346F 345F 
+       3420 3420 3473 
+       3465 3472 3469 
+       3461 346C 3420 
+       3470 346F 3472 
+       3474 347C 
+                      00066 
+                      00067 ;######################################################################
+                      00068 
+00AD                  00069 interrupt:
+Warning[203]: Found opcode in column 1. (MOVLW)
+00AD   30D1           00070 MOVLW   0xD1            ;timer reset
+Warning[203]: Found opcode in column 1. (MOVWF)
+00AE   0081           00071 MOVWF   TMR0
+Warning[205]: Found directive in column 1. (BANKSEL)
+00AF   1283 1303      00072 BANKSEL INTCON
+Warning[203]: Found opcode in column 1. (BCF)
+00B1   110B           00073 BCF     INTCON,T0IF
+Warning[205]: Found directive in column 1. (BANKSEL)
+00B2   1283 1303      00074 BANKSEL INTCON
+Warning[203]: Found opcode in column 1. (BCF)
+00B4   128B           00075 BCF     interren
+Warning[205]: Found directive in column 1. (BANKSEL)
+00B5   1283 1303      00076 BANKSEL ADRESH          ;adget
+Warning[203]: Found opcode in column 1. (MOVF)
+00B7   081E           00077 MOVF    ADRESH,W
+Warning[203]: Found opcode in column 1. (MOVWF)
+00B8   00A7           00078 MOVWF   tdatah
+Warning[205]: Found directive in column 1. (BANKSEL)
+00B9   1683 1303      00079 BANKSEL ADRESL
+Warning[203]: Found opcode in column 1. (MOVF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00BB   081E           00080 MOVF    ADRESL,W
+Warning[203]: Found opcode in column 1. (MOVWF)
+00BC   00A8           00081 MOVWF   tdatal
+Warning[205]: Found directive in column 1. (BANKSEL)
+00BD   1283 1303      00082 BANKSEL ADCON0          ;adset  
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (BSF)
+00BF   151F           00083 BSF     ADCON0,GO       ;godone bit set here
+Warning[203]: Found opcode in column 1. (INCFSZ)
+00C0   0FA3           00084 INCFSZ  countl,F
+Warning[203]: Found opcode in column 1. (RETFIE)
+00C1   0009           00085 RETFIE
+Warning[203]: Found opcode in column 1. (INCF)
+00C2   0AA2           00086 INCF    counth,F
+Warning[203]: Found opcode in column 1. (RETFIE)
+00C3   0009           00087 RETFIE
+                      00088 
+                      00089 
+                      00090 ;######################################################################
+                      00091 
+00C4                  00092 main:
+00C4   1683 1303      00093         BANKSEL TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00C6   1485           00094         BSF     TRISA,1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00C7   0186           00095         CLRF    TRISB
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00C8   0188           00096         CLRF    TRISD
+00C9   1283 1303      00097         BANKSEL PORTB
+00CB   0186           00098         CLRF    PORTB
+00CC   0188           00099         CLRF    PORTD
+00CD   1683 1303      00100         BANKSEL TRISC           ;configure pins for serial transmitting
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00CF   1307           00101         BCF     TRISC,6         ;c6=0 as output
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00D0   1787           00102         BSF     TRISC,7         ;c7=1 as input
+                      00103         
+00D1                  00104 timerinit:
+00D1   1283 1303      00105         BANKSEL INTCON
+00D3   018B           00106         CLRF    INTCON
+00D4   178B           00107         BSF     INTCON,GIE
+00D5   1683 1303      00108         BANKSEL OPTION_REG      
+00D7   30C0           00109         MOVLW   0xC0
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00D8   0081           00110         MOVWF   OPTION_REG
+                      00111         
+00D9                  00112 adinit:
+00D9   1683 1303      00113         BANKSEL ADCON1
+00DB   300E           00114         MOVLW   0x0E
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00DC   009F           00115         MOVWF   ADCON1
+00DD   1283 1303      00116         BANKSEL ADCON0
+00DF   3041           00117         MOVLW   0x41    ;godone bit not set here
+00E0   009F           00118         MOVWF   ADCON0
+                      00119                 
+00E1                  00120 lcdinit:
+00E1   2290           00121         CALL    delay100ms
+00E2   3030           00122         MOVLW   0x0030  ;setting function set
+00E3   227D           00123         CALL    cmd
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00E4   3030           00124         MOVLW   0x0030  ;setting function set
+00E5   227D           00125         CALL    cmd
+00E6   3030           00126         MOVLW   0x0030  ;setting function set
+00E7   227D           00127         CALL    cmd
+00E8   3038           00128         MOVLW   0x0038  ;setting function set
+00E9   227D           00129         CALL    cmd
+00EA   300C           00130         MOVLW   0x000C  ;display ON/OFF control[1,display on,curser off,blinck off]
+00EB   227D           00131         CALL    cmd
+00EC   3006           00132         MOVLW   0x0006  ;entry mode set[1,increment on,display shift off]
+00ED   227D           00133         CALL    cmd
+00EE   3001           00134         MOVLW   0x0001  ;clear display
+00EF   227D           00135         CALL    cmd
+                      00136 
+00F0                  00137 usartinit:
+00F0   1283 1303      00138         BANKSEL RCSTA
+00F2   1798           00139         BSF     RCSTA,SPEN
+00F3   1683 1303      00140         BANKSEL TXSTA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00F5   1698           00141         BSF     TXSTA,TXEN
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00F6   1518           00142         BSF     TXSTA,BRGH
+00F7   1683 1303      00143         BANKSEL SPBRG           ;setting up baud rate
+00F9   3019           00144         MOVLW   D'25'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00FA   0099           00145         MOVWF   SPBRG
+                      00146 
+                      00147 ;######################################################################
+                      00148         
+00FB                  00149 welcome:
+00FB   3006           00150         MOVLW   msg0
+00FC   2243           00151         CALL    sendmsg
+00FD   3003           00152         MOVLW   0x03
+00FE   00B3           00153         MOVWF   txchk
+00FF   30C0           00154 WCMF0:  MOVLW   0xC0
+0100   227D           00155         CALL    cmd
+0101   3010           00156         MOVLW   0x10
+0102   00B5           00157         MOVWF   msgptr
+0103   30FF           00158 WCMF1:  MOVLW   0xFF
+0104   2272           00159         CALL    sendchar
+0105   0BB5           00160         DECFSZ  msgptr,F
+0106   2903           00161         GOTO    WCMF1
+0107   30C0           00162         MOVLW   0xC0
+0108   227D           00163         CALL    cmd
+0109   3019           00164         MOVLW   0x19
+010A   00B5           00165         MOVWF   msgptr
+010B   3020           00166 WCMF2:  MOVLW   0x20
+010C   2272           00167         CALL    sendchar
+010D   0BB5           00168         DECFSZ  msgptr,F
+010E   290B           00169         GOTO    WCMF2
+010F   0BB3           00170         DECFSZ  txchk,F
+0110   28FF           00171         GOTO    WCMF0
+0111   3001           00172         MOVLW   0x0001  ;clear display
+0112   227D           00173         CALL    cmd
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00174         
+0113   298D           00175         GOTO    divide  ;$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+0114   298D           00176         GOTO    divide
+0115   298D           00177         GOTO    divide
+0116   218D           00178         CALL    divide
+0117   1506           00179         BSF     PORTB,2 ;$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                      00180         ;######################################################################
+                      00181 
+0118                  00182 xvoltage:       
+0118   2285           00183         CALL    wait
+0119   01A2           00184         CLRF    counth
+011A   01A3           00185 XVLT4:  CLRF    countl
+011B   30FF           00186         MOVLW   0xFF
+011C   00C8           00187         MOVWF   lowvolt
+011D   22A2           00188 XVLT0:  CALL    inf
+011E   0827           00189         MOVF    tdatah,W
+011F   0249           00190         SUBWF   highvolt,W
+0120   1803           00191         BTFSC   bitc
+0121   2924           00192         GOTO    XVLT2
+0122   0827           00193         MOVF    tdatah,W
+0123   00C9           00194         MOVWF   highvolt
+0124   0848           00195 XVLT2:  MOVF    lowvolt,W
+0125   0227           00196         SUBWF   tdatah,W
+0126   1803           00197         BTFSC   bitc
+0127   292A           00198         GOTO    XVLT3
+0128   0827           00199         MOVF    tdatah,W
+0129   00C8           00200         MOVWF   lowvolt
+012A   1FA2           00201 XVLT3:  BTFSS   counth,7
+012B   291D           00202         GOTO    XVLT0   
+012C   0848           00203         MOVF    lowvolt,W
+012D   0249           00204         SUBWF   highvolt,W
+012E   00AA           00205         MOVWF   margin
+012F   3C10           00206         SUBLW   0x10
+0130   1803           00207         BTFSC   bitc
+0131   291A           00208         GOTO    XVLT4
+0132   1003           00209         BCF     bitc
+0133   0CAA           00210         RRF     margin,F
+0134   1003           00211         BCF     bitc
+0135   0CAA           00212         RRF     margin,F
+0136   082A           00213         MOVF    margin,W
+0137   0249           00214         SUBWF   highvolt,W
+0138   00AA           00215         MOVWF   margin
+                      00216 
+                      00217 ;######################################################################
+                      00218 
+0139                  00219 usartcheck:
+0139   01B3           00220         CLRF    txchk
+013A   01B4           00221         CLRF    txchk1
+013B   17B3           00222         BSF     txchk,7
+013C   1734           00223         BSF     txchk1,6
+013D                  00224 TXCF2:
+013D   1683 1303      00225         BANKSEL TXSTA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+013F   1C98           00226         BTFSS   TXSTA,TRMT
+0140   2948           00227         GOTO    TXCF1
+0141   30FF           00228         MOVLW   0xFF
+0142   0099           00229         MOVWF   TXREG
+0143   0BB4           00230         DECFSZ  txchk1,F
+0144   2948           00231         GOTO    TXCF1
+0145   3090           00232         MOVLW   msg6
+0146   2243           00233         CALL    sendmsg
+0147   294E           00234         GOTO    usartroutine
+0148                  00235 TXCF1:
+0148   0BB3           00236         DECFSZ  txchk,F
+0149   293D           00237         GOTO    TXCF2
+014A   1683 1303      00238         BANKSEL TXSTA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+014C   1298           00239         BCF     TXSTA,TXEN
+014D   296C           00240         GOTO    LCDF
+                      00241 
+                      00242 ;######################################################################
+                      00243 
+014E                  00244 usartroutine:
+014E   01B3           00245         CLRF    txchk
+014F   17B3           00246         BSF     txchk,7
+0150                  00247 TXRF0:
+0150   1683 1303      00248         BANKSEL TXSTA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0152   1898           00249         BTFSC   TXSTA,TRMT
+0153   295A           00250         GOTO    TXRF2
+0154   0BB3           00251         DECFSZ  txchk,F
+0155   2950           00252         GOTO    TXRF0   
+0156   3017           00253         MOVLW   msg1
+0157   2243           00254         CALL    sendmsg
+0158   2285           00255         CALL    wait
+0159   2939           00256         GOTO    usartcheck
+015A                  00257 TXRF2:
+Message[305]: Using default destination of 1 (file).
+015A   08A7           00258         MOVF    tdatah
+015B   0099           00259         MOVWF   TXREG
+015C   01B3           00260         CLRF    txchk
+015D   17B3           00261         BSF     txchk,7
+015E                  00262 TXRF1:  
+015E   1683 1303      00263         BANKSEL TXSTA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0160   1898           00264         BTFSC   TXSTA,TRMT
+0161   2968           00265         GOTO    TXRF3
+0162   0BB3           00266         DECFSZ  txchk,F
+0163   295E           00267         GOTO    TXRF1   
+0164   3017           00268         MOVLW   msg1
+0165   2243           00269         CALL    sendmsg
+0166   2285           00270         CALL    wait
+0167   2939           00271         GOTO    usartcheck
+0168                  00272 TXRF3:
+Message[305]: Using default destination of 1 (file).
+0168   08A8           00273         MOVF    tdatal
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0169   0099           00274         MOVWF   TXREG
+016A   22A2           00275         CALL    inf
+016B   294E           00276         GOTO    usartroutine
+                      00277 
+                      00278 ;######################################################################
+                      00279 
+016C                  00280 LCDF:
+016C   15A6           00281         BSF     meancount,3
+016D   3036           00282         MOVLW   msg2
+016E   2243           00283         CALL    sendmsg
+                      00284 
+016F                  00285 lcdroutine:
+016F   14A9           00286         BSF     decerr,1
+0170   082A           00287 hpc:    MOVF    margin,W
+0171   0227           00288         SUBWF   tdatah,W
+0172   1C03           00289         BTFSS   bitc
+0173   2980           00290         GOTO    HPCF0
+0174   0822           00291         MOVF    counth,W
+0175   3C06           00292         SUBLW   0x06
+0176   1803           00293         BTFSC   bitc
+0177   2984           00294         GOTO    HPCF2
+0178   0823           00295         MOVF    countl,W
+0179   00A5           00296         MOVWF   tcountl
+017A   0822           00297         MOVF    counth,W
+017B   00A4           00298         MOVWF   tcounth
+017C   01A3           00299         CLRF    countl
+017D   01A2           00300         CLRF    counth
+017E   22A2           00301         CALL    inf
+017F   298D           00302         GOTO    divide
+0180   1BA2           00303 HPCF0:  BTFSC   counth,7
+0181   2984           00304         GOTO    HPCF2
+0182   22A2           00305         CALL    inf
+0183   2970           00306         GOTO    hpc
+0184   01A3           00307 HPCF2:  CLRF    countl
+0185   01A2           00308         CLRF    counth
+0186   22A2           00309         CALL    inf
+0187   0BA9           00310         DECFSZ  decerr,F
+0188   2970           00311         GOTO    hpc
+0189   306F           00312         MOVLW   msg5
+018A   2243           00313         CALL    sendmsg
+018B   2285           00314         CALL    wait
+018C   2918           00315         GOTO    xvoltage
+                      00316 
+                      00317 ;######################################################################
+                      00318 
+018D                  00319 divide: 
+018D   3009           00320         MOVLW   0x09
+018E   00C6           00321         MOVWF   t8
+018F   3027           00322         MOVLW   0x27
+0190   00C5           00323         MOVWF   t7
+0191   30C0           00324         MOVLW   0xC0
+0192   00C4           00325         MOVWF   t6
+0193   01B2           00326         CLRF    m0      
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0194   01B1           00327         CLRF    m1
+0195   01BE           00328         CLRF    t0
+0196   163E           00329         BSF     t0,4
+0197   1003           00330 DVLP1:  BCF     STATUS,C
+0198   0DB2           00331         RLF     m0,F
+0199   0DB1           00332         RLF     m1,F            
+019A   0DC4           00333         RLF     t6,F
+019B   0DC5           00334         RLF     t7,F
+019C   0DC6           00335         RLF     t8,F
+019D   0824           00336         MOVF    tcounth,W
+019E   0246           00337         SUBWF   t8,W
+019F   1C03           00338         BTFSS   bitc
+01A0   29AF           00339         GOTO    DVLP
+01A1   1D03           00340         BTFSS   bitz
+01A2   29A7           00341         GOTO    DVLP2
+01A3   0825           00342         MOVF    tcountl,W
+01A4   0245           00343         SUBWF   t7,W
+01A5   1C03           00344         BTFSS   bitc
+01A6   29AF           00345         GOTO    DVLP
+01A7   0825           00346 DVLP2:  MOVF    tcountl,W
+01A8   02C5           00347         SUBWF   t7,F
+01A9   1C03           00348         BTFSS   bitc
+01AA   03C6           00349         DECF    t8,F
+01AB   0824           00350         MOVF    tcounth,W
+01AC   02C6           00351         SUBWF   t8,F    
+01AD   1432           00352         BSF     m0,0
+01AE   29AF           00353         GOTO    DVLP
+01AF   22A2           00354 DVLP:   CALL    inf
+01B0   0BBE           00355         DECFSZ  t0,F
+01B1   2997           00356         GOTO    DVLP1
+                      00357 
+                      00358 ;######################################################################
+                      00359 
+01B2                  00360 getmean:
+01B2   0832           00361         MOVF    m0,W
+01B3   07B0           00362         ADDWF   m2,F
+01B4   1803           00363         BTFSC   bitc
+01B5   0A31           00364         INCF    m1,W
+01B6   07AF           00365         ADDWF   m3,F
+01B7   0CAF           00366         RRF     m3,F
+01B8   0CB0           00367         RRF     m2,F    ;ZZZZZ2
+01B9   0830           00368         MOVF    m2,W
+01BA   07AE           00369         ADDWF   m4,F
+01BB   1803           00370         BTFSC   bitc
+01BC   0A2F           00371         INCF    m3,W
+01BD   07AD           00372         ADDWF   m5,F
+01BE   0CAD           00373         RRF     m5,F
+01BF   0CAE           00374         RRF     m4,F    ;ZZZZZ4
+01C0   082E           00375         MOVF    m4,W
+01C1   07A1           00376         ADDWF   finalmeanf,F
+01C2   1803           00377         BTFSC   bitc
+01C3   0A2D           00378         INCF    m5,W
+01C4   07A0           00379         ADDWF   finalmean,F
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+01C5   0CA0           00380         RRF     finalmean,F
+01C6   0CA1           00381         RRF     finalmeanf,F    ;ZZZZZ8
+01C7   0832           00382         MOVF    m0,W
+01C8   00B0           00383         MOVWF   m2
+01C9   0831           00384         MOVF    m1,W
+01CA   00AF           00385         MOVWF   m3
+01CB   0830           00386         MOVF    m2,W
+01CC   00AE           00387         MOVWF   m4
+01CD   082F           00388         MOVF    m3,W
+01CE   00AD           00389         MOVWF   m5
+01CF   082E           00390         MOVF    m4,W
+01D0   00A1           00391         MOVWF   finalmeanf
+01D1   082D           00392         MOVF    m5,W
+01D2   00A0           00393         MOVWF   finalmean
+01D3   0B26           00394         DECFSZ  meancount,W
+01D4   296F           00395         GOTO    lcdroutine
+01D5   15A6           00396         BSF     meancount,3
+01D6   0820           00397         MOVF    finalmean,W
+01D7   3C64           00398         SUBLW   .100
+01D8   1803           00399         BTFSC   bitc
+01D9   1506           00400         BSF     bitbuzz
+01DA   0820           00401         MOVF    finalmean,W
+01DB   3C3C           00402         SUBLW   .60
+01DC   1C03           00403         BTFSS   bitc
+01DD   1506           00404         BSF     bitbuzz
+                      00405 
+                      00406 ;######################################################################
+                      00407 
+01DE                  00408 decimals:
+01DE   01BF           00409         CLRF    t1
+01DF   01BE           00410         CLRF    t0
+01E0   0820           00411         MOVF    finalmean,W
+01E1   2228           00412         CALL    DECC
+01E2   22A2           00413         CALL    inf
+01E3   083F           00414         MOVF    t1,W
+01E4   00B8           00415         MOVWF   var2
+01E5   083E           00416         MOVF    t0,W
+01E6   01BF           00417         CLRF    t1
+01E7   01BE           00418         CLRF    t0
+01E8   2228           00419         CALL    DECC
+01E9   22A2           00420         CALL    inf
+01EA   083F           00421         MOVF    t1,W
+01EB   00B7           00422         MOVWF   var1
+01EC   083E           00423         MOVF    t0,W
+01ED   00B6           00424         MOVWF   var0
+                      00425         
+01EE   0103           00426         CLRW            ;dividing stuff here
+01EF   1821           00427         BTFSC   finalmeanf,0
+01F0   3E09           00428         ADDLW   .9
+01F1   18A1           00429         BTFSC   finalmeanf,1
+01F2   3E08           00430         ADDLW   .8
+01F3   1921           00431         BTFSC   finalmeanf,2
+01F4   3E06           00432         ADDLW   .6
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+01F5   19A1           00433         BTFSC   finalmeanf,3
+01F6   3E02           00434         ADDLW   .2
+01F7   1A21           00435         BTFSC   finalmeanf,4
+01F8   3E05           00436         ADDLW   .5
+01F9   3E01           00437         ADDLW   .1
+01FA   2228           00438         CALL    DECC
+01FB   22A2           00439         CALL    inf
+01FC   083E           00440         MOVF    t0,W
+01FD   01BE           00441         CLRF    t0              ;&&&&&&&&&&&&&&&
+01FE   1821           00442         BTFSC   finalmeanf,0
+01FF   3E03           00443         ADDLW   .3
+0200   18A1           00444         BTFSC   finalmeanf,1
+0201   3E07           00445         ADDLW   .7
+0202   1921           00446         BTFSC   finalmeanf,2
+0203   3E05           00447         ADDLW   .5
+0204   19A1           00448         BTFSC   finalmeanf,3
+0205   3E01           00449         ADDLW   .1
+0206   1A21           00450         BTFSC   finalmeanf,4
+0207   3E02           00451         ADDLW   .2
+0208   1AA1           00452         BTFSC   finalmeanf,5
+0209   3E05           00453         ADDLW   .5
+020A   2228           00454         CALL    DECC
+020B   22A2           00455         CALL    inf
+020C   083E           00456         MOVF    t0,W
+020D   01BE           00457         CLRF    t0              ;&&&&&&&&&&&&&&&
+020E   1921           00458         BTFSC   finalmeanf,2
+020F   3E01           00459         ADDLW   .1
+0210   19A1           00460         BTFSC   finalmeanf,3
+0211   3E03           00461         ADDLW   .3
+0212   1A21           00462         BTFSC   finalmeanf,4
+0213   3E06           00463         ADDLW   .6
+0214   1AA1           00464         BTFSC   finalmeanf,5
+0215   3E02           00465         ADDLW   .2
+0216   1B21           00466         BTFSC   finalmeanf,6
+0217   3E05           00467         ADDLW   .5
+0218   2228           00468         CALL    DECC
+0219   22A2           00469         CALL    inf
+021A   083F           00470         MOVF    t1,W
+021B   00BA           00471         MOVWF   var4
+021C   083E           00472         MOVF    t0,W
+021D   01BE           00473         CLRF    t0              ;&&&&&&&&&&&&&&&
+021E   01BF           00474         CLRF    t1
+021F   1AA1           00475         BTFSC   finalmeanf,5
+0220   3E01           00476         ADDLW   .1
+0221   1B21           00477         BTFSC   finalmeanf,6
+0222   3E02           00478         ADDLW   .2
+0223   1BA1           00479         BTFSC   finalmeanf,7
+0224   3E05           00480         ADDLW   .5
+0225   083F           00481         MOVF    t1,W
+0226   00B9           00482         MOVWF   var3
+0227   2A2E           00483         GOTO    sendxmsg
+0228                  00484 DECC:
+0228   3C0A           00485         SUBLW   .10
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0229   1C03           00486         BTFSS   bitc
+022A   0008           00487         RETURN
+022B   00BF           00488         MOVWF   t1
+022C   0ABE           00489         INCF    t0,F
+022D   2A28           00490         GOTO    DECC
+                      00491 
+                      00492 ;######################################################################
+                      00493 
+022E                  00494 sendxmsg:
+022E   3052           00495         MOVLW   msg3
+022F   2243           00496         CALL    sendmsg
+0230   3041           00497         MOVLW   0x41
+0231   225A           00498         CALL    sendvarmsg
+                      00499         
+0232   0822           00500 lpc:    MOVF    counth,W
+0233   3C05           00501         SUBLW   0x05
+0234   1803           00502         BTFSC   bitc
+0235   2A3E           00503         GOTO    LPCF0
+0236   0827           00504         MOVF    tdatah,W
+0237   022A           00505         SUBWF   margin,W
+0238   1C03           00506         BTFSS   bitc
+0239   2A3C           00507         GOTO    LPCF1
+023A   22A2           00508         CALL    inf
+023B   296F           00509         GOTO    lcdroutine
+023C   1BA2           00510 LPCF1:  BTFSC   counth,7
+023D   2A40           00511         GOTO    LPCF2
+023E   22A2           00512 LPCF0:  CALL    inf
+023F   2A32           00513         GOTO    lpc
+0240   306F           00514 LPCF2:  MOVLW   msg5
+0241   2243           00515         CALL    sendmsg
+0242   2918           00516         GOTO    xvoltage                ;end of main routine
+                      00517 
+                      00518 ;######################################################################
+                      00519 
+0243                  00520 sendmsg:        
+0243   1283 1303      00521         BANKSEL msgptr          ;starting register should loaded to msgptr
+0245   00B5           00522         MOVWF   msgptr          ;variable 'tempchar' used to handle a character
+0246   3001           00523         MOVLW   0x0001  ;clear display
+0247   227D           00524         CALL    cmd
+0248   0835           00525 SNMF:   MOVF    msgptr,W                ;'LINEMSGTEMP' function should be initialized near character dat
+                            a tables
+0249   2005           00526         CALL    LINEMSGTEMP     ;'sendchar' function used to send a character
+024A   00BD           00527         MOVWF   tempchar                ;once called lineXsg function whole data table characters send t
+                            o LCD
+024B   0AB5           00528         INCF    msgptr,F
+024C   083D           00529         MOVF    tempchar,W
+024D   3A5F           00530         XORLW   0x5F
+024E   1903           00531         BTFSC   bitz
+024F   2A57           00532         GOTO    NEWLINE
+0250   083D           00533         MOVF    tempchar,W      
+0251   3A7C           00534         XORLW   0x7C
+0252   1903           00535         BTFSC   bitz
+0253   0008           00536         RETURN
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0254   083D           00537         MOVF    tempchar,W
+0255   2272           00538         CALL    sendchar
+0256   2A48           00539         GOTO    SNMF
+0257                  00540 NEWLINE:
+0257   30C0           00541         MOVLW   0x00C0
+0258   227D           00542         CALL    cmd
+0259   2A48           00543         GOTO    SNMF
+                      00544 
+                      00545 ;######################################################################
+                      00546 
+025A                  00547 sendvarmsg:
+025A   00BC           00548         MOVWF   lcdptr          ;starting register should loaded to msgptr
+025B   3E80           00549         ADDLW   0x80            ;variable 'tempchar' used to handle a character
+025C   227D           00550         CALL    cmd             ;'LINEMSGTEMP' function should be initialized near character data tables
+025D   0836           00551         MOVF    var0,W          ;'sendchar' function used to send a character
+025E   3A00           00552         XORLW   0x00            ;once called lineXsg function whole data table characters send to LCD
+025F   1D03           00553         BTFSS   bitz            
+0260   3E10           00554         ADDLW   0x10
+0261   3E20           00555         ADDLW   0x20
+0262   2272           00556         CALL    sendchar
+0263   0837           00557         MOVF    var1,W
+0264   3E30           00558         ADDLW   0x30    
+0265   2272           00559         CALL    sendchar
+0266   0838           00560         MOVF    var2,W
+0267   3E30           00561         ADDLW   0x30    
+0268   2272           00562         CALL    sendchar
+0269   302E           00563         MOVLW   A'.'
+026A   2272           00564         CALL    sendchar
+026B   083A           00565         MOVF    var4,W
+026C   3E30           00566         ADDLW   0x30    
+026D   2272           00567         CALL    sendchar        
+026E   083B           00568         MOVF    var5,W
+026F   3E30           00569         ADDLW   0x30    
+0270   2272           00570         CALL    sendchar
+0271   0008           00571         RETURN
+                      00572 
+                      00573 ;######################################################################
+                      00574 
+0272                  00575 sendchar:                       ;send a character to LCD
+0272   0088           00576         MOVWF   dataport
+0273   0000           00577         NOP
+0274   1406           00578         BSF     dataen          ;select data registry
+                      00579         signal                  ;signal enable macro
+0275   1486               M         BSF     signalen
+0276   0000               M         NOP
+0277   1086               M         BCF     signalen
+0278   0000           00580         NOP
+0279   0188           00581         CLRF    dataport        ;make all PORTB outputs low
+027A   1006           00582         BCF     dataen          ;select instruction registry
+027B   22A2           00583         CALL    inf
+027C   0008           00584         RETURN
+                      00585 
+                      00586 ;######################################################################
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00587 
+027D   0088           00588 cmd:    MOVWF   dataport        ;send command to PORTB
+027E   0000           00589         NOP
+                      00590         signal                  ;signal enable macro
+027F   1486               M         BSF     signalen
+0280   0000               M         NOP
+0281   1086               M         BCF     signalen
+0282   0188           00591         CLRF    dataport        ;make all PORTB outputs low
+0283   22A2           00592         CALL    inf
+0284   0008           00593         RETURN
+                      00594 
+                      00595 ;######################################################################
+                      00596 
+0285   2289           00597 wait:   CALL    delay2s
+0286   3001           00598         MOVLW   0x0001  ;clear display
+0287   227D           00599         CALL    cmd
+0288   0008           00600         RETURN
+                      00601 
+                      00602 ;######################################################################
+                      00603 
+0289                  00604 delay2s:
+0289   3005           00605         MOVLW   0x0005
+028A   00CD           00606         MOVWF   TIME4
+028B   0000           00607 DELAY4: NOP
+028C   2290           00608         CALL    delay100ms
+028D   0BCD           00609         DECFSZ  TIME4,F
+028E   2A8B           00610         GOTO    DELAY4
+028F   0008           00611         RETURN
+0290                  00612 delay100ms:
+0290   3005           00613         MOVLW   0x0005
+0291   00CC           00614         MOVWF   TIME3
+0292   0000           00615 DELAY3: NOP
+0293   2297           00616         CALL    delay5ms
+0294   0BCC           00617         DECFSZ  TIME3,F
+0295   2A92           00618         GOTO    DELAY3
+0296   0008           00619         RETURN
+0297                  00620 delay5ms:
+0297   3005           00621         MOVLW   0x0005
+0298   00CB           00622         MOVWF   TIME2
+0299   30FA           00623 DELAY2: MOVLW   0x00FA
+029A   00CA           00624         MOVWF   TIME1
+029B   0000           00625 DELAY1: NOP
+029C   0BCA           00626         DECFSZ  TIME1,F
+029D   2A9B           00627         GOTO    DELAY1
+029E   0000           00628         NOP
+029F   0BCB           00629         DECFSZ  TIME2,F
+02A0   2A99           00630         GOTO    DELAY2
+02A1   0008           00631         RETURN
+                      00632 
+                      00633 ;######################################################################
+                      00634 
+02A2                  00635 inf:    
+02A2   1283 1303      00636         BANKSEL INTCON
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02A4   168B           00637         BSF     interren
+02A5   0000           00638 madinf: NOP                     ;if interrupt not initialized return
+02A6   0000           00639         NOP
+02A7   1283 1303      00640         BANKSEL INTCON
+02A9   1A8B           00641         BTFSC   interren
+02AA   2AA5           00642         GOTO    madinf
+02AB   0008           00643         RETURN
+Warning[205]: Found directive in column 1. (END)
+                      00644 END
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+CHS2                              00000005
+CIS                               00000003
+CKE                               00000006
+CKP                               00000004
+CM0                               00000000
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+DECC                              00000228
+DELAY1                            0000029B
+DELAY2                            00000299
+DELAY3                            00000292
+DELAY4                            0000028B
+DVLP                              000001AF
+DVLP1                             00000197
+DVLP2                             000001A7
+D_A                               00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+HPCF0                             00000180
+HPCF2                             00000184
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IBF                               00000007
+IBOV                              00000005
+INDF                              00000000
+INTCON                            0000000B
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LCDF                              0000016C
+LINEMSGTEMP                       00000005
+LPCF0                             0000023E
+LPCF1                             0000023C
+LPCF2                             00000240
+NEWLINE                           00000257
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSPIE                             00000007
+PSPIF                             00000007
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PSPMODE                           00000004
+R                                 00000002
+RBIE                              00000003
+RBIF                              00000000
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_W                               00000002
+S                                 00000003
+SEN                               00000000
+SMP                               00000007
+SNMF                              00000248
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T2CKPS1                           00000001
+T2CON                             00000012
+TIME1                             0000004A
+TIME2                             0000004B
+TIME3                             0000004C
+TIME4                             0000004D
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISB                             00000086
+TRISC                             00000087
+TRISD                             00000088
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXCF1                             00000148
+TXCF2                             0000013D
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXRF0                             00000150
+TXRF1                             0000015E
+TXRF2                             0000015A
+TXRF3                             00000168
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+WCMF0                             000000FF
+WCMF1                             00000103
+WCMF2                             0000010B
+WCOL                              00000007
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+XVLT0                             0000011D
+XVLT2                             00000124
+XVLT3                             0000012A
+XVLT4                             0000011A
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_HS_OSC                           00003FFE
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F877A                         00000001
+adinit                            000000D9
+bitbuzz                           PORTB,2
+bitc                              STATUS,C
+bitz                              STATUS,Z
+cmd                               0000027D
+counth                            00000022
+countl                            00000023
+dataen                            PORTB,0
+dataport                          PORTD
+decerr                            00000029
+decimals                          000001DE
+delay100ms                        00000290
+delay2s                           00000289
+delay5ms                          00000297
+divide                            0000018D
+finalmean                         00000020
+finalmeanf                        00000021
+getmean                           000001B2
+highvolt                          00000049
+hpc                               00000170
+inf                               000002A2
+interren                          INTCON,T0IE
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+interrupt                         000000AD
+lcdinit                           000000E1
+lcdptr                            0000003C
+lcdroutine                        0000016F
+lowvolt                           00000048
+lpc                               00000232
+m0                                00000032
+m1                                00000031
+m2                                00000030
+m3                                0000002F
+m4                                0000002E
+m5                                0000002D
+m6                                0000002C
+m7                                0000002B
+madinf                            000002A5
+main                              000000C4
+margin                            0000002A
+meancount                         00000026
+msg0                              00000006
+msg1                              00000017
+msg2                              00000036
+msg3                              00000052
+msg5                              0000006F
+msg6                              00000090
+msgptr                            00000035
+sendchar                          00000272
+sendmsg                           00000243
+sendvarmsg                        0000025A
+sendxmsg                          0000022E
+signal                            
+signalen                          PORTB,1
+t0                                0000003E
+t1                                0000003F
+t2                                00000040
+t3                                00000041
+t4                                00000042
+t5                                00000043
+t6                                00000044
+t7                                00000045
+t8                                00000046
+t9                                00000047
+tcounth                           00000024
+tcountl                           00000025
+tdatah                            00000027
+tdatal                            00000028
+tempchar                          0000003D
+timerinit                         000000D1
+txchk                             00000033
+txchk1                            00000034
+usartcheck                        00000139
+usartinit                         000000F0
+usartroutine                      0000014E
+var0                              00000036
+MPASM  5.37                      PROJECTX.ASM   4-26-2011  9:34:54         PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+var1                              00000037
+var2                              00000038
+var3                              00000039
+var4                              0000003A
+var5                              0000003B
+wait                              00000285
+welcome                           000000FB
+xvoltage                          00000118
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+00C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0100 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0140 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0180 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+01C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0200 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0240 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0280 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXX---- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   681
+Program Memory Words Free:  7511
+
+
+Errors   :     0
+Warnings :    27 reported,     0 suppressed
+Messages :    17 reported,     0 suppressed
+
+

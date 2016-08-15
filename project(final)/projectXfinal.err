@@ -1,0 +1,44 @@
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 9 : Found directive in column 1. (LIST)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 12 : Found directive in column 1. (__config)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 24 : Found directive in column 1. (cblock)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 41 : Found directive in column 1. (ENDC)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 53 : Found directive in column 1. (ORG)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 54 : Found opcode in column 1. (GOTO)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 55 : Found directive in column 1. (ORG)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 56 : Found opcode in column 1. (GOTO)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 71 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 72 : Found opcode in column 1. (BCF)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 73 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 74 : Found opcode in column 1. (BCF)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 75 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 76 : Found opcode in column 1. (MOVF)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 77 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 78 : Found opcode in column 1. (MOVWF)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 79 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 80 : Found opcode in column 1. (MOVF)
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 80 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 81 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 82 : Found opcode in column 1. (MOVWF)
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 83 : Found directive in column 1. (BANKSEL)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 84 : Found opcode in column 1. (BSF)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 85 : Found opcode in column 1. (INCFSZ)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 86 : Found opcode in column 1. (RETFIE)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 87 : Found opcode in column 1. (INCF)
+Warning[203] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 88 : Found opcode in column 1. (RETFIE)
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 94 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 95 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 96 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 101 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 102 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 110 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 115 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 141 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 142 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 145 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 223 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 236 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 246 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 255 : Using default destination of 1 (file).
+Message[302] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 261 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 270 : Using default destination of 1 (file).
+Warning[205] F:\PROJECTX\PROJECT(FINAL)\PROJECTXFINAL.ASM 645 : Found directive in column 1. (END)
